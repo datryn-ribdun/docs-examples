@@ -17,7 +17,7 @@ jobs:
       - name: Write test file
         uses: "DamianReeves/write-file-action@master"
         with:
-          path: anothertext.txt
+          path: ~/to_upload/anothertext.txt
           write-mode: overwrite
           contents: |
             example data - I like my dog.
@@ -29,5 +29,5 @@ jobs:
           access_key: ${{ secrets.BUCKET_ACCESS_KEY }}
           secret_key: ${{ secrets.BUCKET_SECRET_KEY }}
           bucket: 'globs'
-          source_dir: 'anothertext.txt'
+          source_dir: '~/to_upload/'
           target_dir: '/campfire/'
