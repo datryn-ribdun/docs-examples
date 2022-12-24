@@ -1,0 +1,33 @@
+name: Upload Glob test
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Write test file
+        uses: "DamianReeves/write-file-action@master"
+        with:
+          path: anothertext.txt
+          write-mode: overwrite
+          contents: |
+            example data - I like my dog.
+            
+      - name: Minio Upload
+        uses: hkdobrev/minio-deploy-action@v1
+        with:
+          endpoint: 'https://s3.dattryribby.info'
+          access_key: ${{ secrets.BUCKET_ACCESS_KEY }}
+          secret_key: ${{ secrets.BUCKET_SECRET_KEY }}
+          bucket: 'globs'
+          source_dir: 'anothertext.txt'
+          target_dir: '/campfire/'
