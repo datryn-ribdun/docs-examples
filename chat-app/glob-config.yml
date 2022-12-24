@@ -1,0 +1,18 @@
+env:
+  desk: 'base'
+  urbit_path: '~/dev/urbit/urbit'
+  repo_path: '~/dev/urbit/docs-examples/chat-app'
+  ship_path: '~/dev/urbit/ships'
+script:
+  - mount:
+    - cmd: 'mount %base'
+      type: 'urbit:app'
+  - copyreactdist:
+    - cmd: '~/dev/urbit/docs-examples/chat-app/build-ui-for-globbing.sh'
+      type: 'system'
+  - commit:
+    - cmd: 'commit %base'
+      type: 'urbit:app'
+  - glob:
+    - cmd: '-garden!make-glob %base /ui'
+      type: 'urbit:dojo'
