@@ -1,1 +1,0 @@
-../../bare-desk/sur/journal.hoon

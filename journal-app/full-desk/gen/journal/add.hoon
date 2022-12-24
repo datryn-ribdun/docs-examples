@@ -1,1 +1,0 @@
-../../../bare-desk/gen/journal/add.hoon

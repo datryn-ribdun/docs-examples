@@ -1,1 +1,0 @@
-../../bare-desk/app/tally.hoon
